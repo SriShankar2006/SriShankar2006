@@ -1,0 +1,22 @@
+name: Generate profile metrics
+
+on:
+  schedule:
+    - cron: "41 3 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lowlighter/metrics@v3.34
+        with:
+          user: SriShankar2006
+          template: classic
+          filename: assets/generated/metrics.svg
+          base: header, activity, community, repositories
+          config_timezone: Asia/Kolkata
